@@ -1,14 +1,33 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Noto_Sans_KR, Noto_Serif_KR, Playfair_Display } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
-const _geist = Geist({ subsets: ["latin"] });
-const _geistMono = Geist_Mono({ subsets: ["latin"] });
+const notoSansKr = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-noto-sans-kr',
+  display: 'swap',
+})
+
+const notoSerifKr = Noto_Serif_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-noto-serif-kr',
+  display: 'swap',
+})
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-playfair',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
-  title: '금빛행정사사무소 | 복잡한 행정 문제, 금빛행정사가 명쾌한 해답을 찾아드립니다',
-  description: '비자/출입국, 외국인 사범 업무, 조달 업무, 법인 설립, 인허가 대리, 기업인증, 국가유공자 등록 - 금빛행정사사무소 김호순 행정사',
+  title: '금빛행정사사무소 | 복잡한 행정 문제, 명쾌한 해답',
+  description: '비자(D-8, F-2, F-4), 외국인 사범, 조달(국가계약법), 법인설립, 인허가 대리, 기업인증(ISO), 국가유공자 등록. 김호순 행정사가 명쾌한 해답을 찾아드립니다.',
+  keywords: ['행정사', '비자', '인허가', '외국인 사범', '법인설립', '서울 행정사', '조달', '기업인증', 'ISO', '국가유공자'],
   generator: 'v0.app',
   icons: {
     icon: [
@@ -27,6 +46,12 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  openGraph: {
+    title: '금빛행정사사무소 | 복잡한 행정 문제, 명쾌한 해답',
+    description: '비자(D-8, F-2, F-4), 외국인 사범, 조달(국가계약법), 법인설립, 인허가 대리, 기업인증(ISO), 국가유공자 등록. 김호순 행정사가 명쾌한 해답을 찾아드립니다.',
+    locale: 'ko_KR',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -35,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className={`${notoSansKr.variable} ${notoSerifKr.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
